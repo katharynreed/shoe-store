@@ -28,6 +28,22 @@ class BrandTest extends PHPUnit_Framework_TestCase
         $expected_result = array('Soles of the Damned', 1);
         $this->assertEquals($result, $expected_result);
     }
+
+    function test_save_getAll()
+    {
+        // Arrange
+        $name_one = 'Soles of the Damned';
+        $test_brand_one = new Brand ($name_one);
+        $test_brand_one->save();
+        $name_two = 'Cleft-Toe Maniac';
+        $test_brand_two = new Brand ($name_two);
+        $test_brand_two->save();
+        // Act
+        $result = Brand::getAll();
+        $expected_result = array($test_brand_one, $test_brand_two);
+        // Assert
+        $this->assertEquals($result, $expected_result);
+    }
 }
 
 
