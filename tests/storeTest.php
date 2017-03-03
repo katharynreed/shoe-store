@@ -106,8 +106,6 @@ class StoreTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($result, $expected_result);
     }
 
-
-
     function test_getBrands()
     {
         $name_one = 'Soles of the Damned';
