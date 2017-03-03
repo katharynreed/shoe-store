@@ -48,7 +48,7 @@ class BrandTest extends PHPUnit_Framework_TestCase
 
     function test_find()
     {
-        // Arrange
+
         $name_one = 'Soles of the Damned';
         $test_brand_one = new Brand ($name_one);
         $test_brand_one->save();
@@ -56,9 +56,9 @@ class BrandTest extends PHPUnit_Framework_TestCase
         $name_two = 'Cleft-Toe Maniac';
         $test_brand_two = new Brand ($name_two);
         $test_brand_two->save();
-        // Act
+
         $result = Brand::find($test_brand_one->getId());
-        // Assert
+
         $this->assertEquals($test_brand_one, $result);
     }
 
@@ -80,7 +80,6 @@ class BrandTest extends PHPUnit_Framework_TestCase
         $test_brand->addStore($test_store2);
 
         $result = $test_brand->getStores();
-        var_dump($result);
         $this->assertEquals([$test_store, $test_store2], $result);
     }
 }

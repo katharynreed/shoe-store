@@ -4,7 +4,7 @@
 * @backupGlobals disabled
 * @backupStaticAttributes disabled
 */
-require_once "src/brand.php";
+require_once "src/store.php";
 
 $server = 'mysql:host=localhost:8889;dbname=shoe_store_test';
 $username = 'root';
@@ -60,6 +60,27 @@ class StoreTest extends PHPUnit_Framework_TestCase
         $result = Store::find($test_store_one->getId());
         // Assert
         $this->assertEquals($test_store_one, $result);
+    }
+
+    function test_getBrands()
+    {
+        $name_one = 'Soles of the Damned';
+        $test_brand = new Brand ($name_one);
+        $test_brand->save();
+
+        $name_two = 'Cleft-Toe Maniac';
+        $test_brand2 = new Brand ($name_two);
+        $test_brand2->save();
+
+        $name = "Oh My Galosh";
+        $test_store = new Store ($name);
+        $test_store->save();
+
+        $test_store->addBrand($test_brand);
+        $test_store->addBrand($test_brand2);
+
+        $result = $test_store->getBrands();
+        $this->assertEquals([$test_brand, $test_brand2], $result);
     }
 }
 

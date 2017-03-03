@@ -1,6 +1,6 @@
 <?php
 
-    require_once __DIR__."/../src/Store.php";
+    require_once __DIR__."/../src/store.php";
 
     class Brand
     {
