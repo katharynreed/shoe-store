@@ -30,6 +30,20 @@ class StoreTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($result, $expected_result);
     }
 
+    function test_setters()
+    {
+
+        $name = 'Oh My Galosh';
+        $id = 1;
+        $test_store = new Store ($name, $id);
+        $test_store->setName('Shoes R Us');
+
+        $result = array ($test_store->getName());
+        $expected_result = array('Shoes R Us');
+
+        $this->assertEquals($result, $expected_result);
+    }
+
     function test_save_getAll()
     {
         $name_one = 'Oh My Galosh';
