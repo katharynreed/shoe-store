@@ -1,5 +1,7 @@
 <?php
 
+    require_once __DIR__."/../src/Store.php";
+
     class Brand
     {
         private $name;
@@ -28,8 +30,27 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function addStore($store)
+        {
+            $exec = $GLOBALS['DB']->prepare("INSERT INTO brands_stores (brand_id, store_id) VALUES (:brand_id, :store_id);");
+            $exec->execute([':brand_id'=>$this->getId(), ':store_id'=>$store->getId()]);
+        }
+
+        function getStores()
+        {
+            $returned_stores = $GLOBALS['DB']->query("SELECT stores.* FROM brands JOIN brands_stores ON  (brands_stores.brand_id = brands.id) JOIN stores ON (stores.id = brands_stores.store_id) WHERE brands.id = {$this->getId()};");
+            $stores = [];
+            foreach($returned_stores as $store) {
+                $name = $store['name'];
+                $id = $store['id'];
+                $new_store = new Store($name, $id);
+                array_push($stores, $new_store);
+            }
+            return $stores;
+        }
+
         static function find($id)
-       {
+        {
             $found_brand;
             $brands = Brand::getAll();
             foreach ($brands as $brand) {
@@ -38,7 +59,7 @@
                 }
             }
             return $found_brand;
-       }
+        }
 
         static function getAll()
         {
@@ -57,6 +78,7 @@
        {
             $GLOBALS['DB']->exec("DELETE FROM brands;");
        }
+
 
 
     }
