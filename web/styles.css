@@ -1,0 +1,52 @@
+body {
+    text-align: center;
+    background-image: url('/../abstractback.png');
+    font-family: 'Montserrat', sans-serif;
+}
+
+* {
+    border-radius: 0 !important;
+}
+
+ul {
+    list-style: none;
+    margin-left: -5%;
+}
+
+a {
+    color: #C54677;
+    text-transform: uppercase;
+}
+
+.business-name {
+    text-align: left;
+    margin-left: 50%;
+}
+
+.navbar {
+    background-color: white;
+    opacity: 20%;
+}
+
+.homepage-background {
+    background-image: url('geoback.png');
+}
+
+#homepage-name {
+    color: hotpink;
+}
+
+.menu {
+    text-align: center;
+    padding-top: 45vh;
+    color: white;
+}
+
+.homepage-btn {
+    text-transform: uppercase;
+    color: white;
+}
+
+#boots {
+    padding-bottom: 10px;
+}

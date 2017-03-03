@@ -1,8 +1,24 @@
 {% extends 'template.html.twig' %}
 
 {% block content %}
-    {{store.getName}}
+    <h3>{{store.getName}}</h3>
+    {% if sold_brands is not empty %}
+        <ul>
+            {% for brand in sold_brands%}
+            <li>{{brand.getName}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
+    <form action="/add_brand_to_store/{{store.getId}}" method="post">
+        <label for="brand">Add {{store.getName}} to a brand's distributer list:</label>
+        <select id="brand" name="brand">
+            {% for brand in brands %}
+                <option value="{{brand.getId}}">{{brand.getName}}</option>
+            {% endfor %}
+        </select>
+        <button class="btn" type="submit" name="button">Complete addition</button>
+    </form>
 
     <form class="form-group" action="/stores/{{store.getId}}/edit" method="post">
         <input name="_method" type="hidden" value="patch">
@@ -19,4 +35,7 @@
                 <button class="btn" type="submit">Delete this store</button>
             </div>
 
+{% endblock %}
+{% block link%}
+<li><a href="/">Home</a></li>
 {% endblock %}

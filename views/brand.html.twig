@@ -10,9 +10,12 @@
 {% endif %}
 
 <form action='/add_brand' method='post'>
-    <label for='name'>Store Name:</label>
+    <label for='name'>Brand Name:</label>
     <input id='name' type="text" name="name" placeholder="Enter brand name here...">
 
-    <button type="submit" name="button">Add</button>
+    <button class="btn" type="submit" name="button">Add</button>
 </form>
+{% endblock %}
+{% block link%}
+<li><a href="/">Home</a></li>
 {% endblock %}

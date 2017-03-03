@@ -13,6 +13,17 @@
         <label for='name'>Store Name:</label>
         <input id='name' type="text" name="name" placeholder="Enter store name here...">
 
-        <button type="submit" name="button">Add</button>
+        <button class="btn" type="submit" name="button">Add</button>
+
     </form>
+
+    <form class="form-group" action="/stores/delete" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <div class="btn-form">
+    <button class="btn" type="submit">Delete All Stores</button>
+    </div>
+    </form>
+{% endblock %}
+{% block link%}
+<li><a href="/">Home</a></li>
 {% endblock %}
