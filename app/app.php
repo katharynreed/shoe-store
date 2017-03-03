@@ -22,6 +22,35 @@
         return $app['twig']->render('homepage.html.twig', ['store' => $store]);
     });
 
+    $app->get('/brands', function() use ($app) {
+        $stores = Store::getAll();
+        $brands = Brand::getAll();
+        return $app['twig']->render('brand.html.twig', ['stores' => $stores, 'brands' => $brands]);
+    });
+
+    $app->post('/add_brand', function() use ($app) {
+        $name = $_POST['name'];
+        $new_brand = new Brand ($name);
+        $new_brand->save();
+        return $app->redirect('/brands');
+    });
+
+    $app->get('/brands/{id}', function($id) use ($app) {
+        $brand = Brand::find($id);
+        $stores = Store::getAll();
+        $sellers = $brand->getStores();
+        return $app['twig']->render('brand_info.html.twig', ['stores' => $stores, 'brand' => $brand, 'sellers' => $sellers]);
+    });
+
+    $app->post('/add_store_to_brand/{id}', function($id) use ($app) {
+        $store_id = $_POST['store'];
+        $store = Store::find($store_id);
+        $brand = Brand::find($id);
+        $brand->addStore($store);
+        $brand->getStores();
+
+        return $app->redirect('/brands/'.$id);
+    });
 
     $app->get('/stores', function() use ($app) {
         $stores = Store::getAll();

@@ -1,0 +1,25 @@
+{% extends 'template.html.twig' %}
+
+{% block content %}
+    <h3>{{brand.getName}}</h3>
+
+    <h4>Retailers selling shoe brand:</h4>
+    {% if sellers is not empty %}
+        <ul>
+            {% for seller in sellers %}
+            <li>{{seller.getName}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="/add_store_to_brand/{{brand.getId}}" method="post">
+        <label for="store">Add {{brand.getName}} to a retailer's inventory:</label>
+        <select id="store" name="store">
+            {% for store in stores %}
+                <option value="{{store.getId}}">{{store.getName}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" name="button">Complete addition</button>
+    </form>
+
+{% endblock %}
