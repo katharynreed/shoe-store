@@ -34,6 +34,14 @@ class Store
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
+
+    function updateName($new_name)
+    {
+        $exec = $GLOBALS['DB']->prepare("UPDATE stores SET name = :name WHERE id = :id;");
+        $exec->execute([':name' => $new_name, 'id' => $this->getId()]);
+        $this->setName($new_name);
+    }
+
     function addBrand($brand)
     {
         $exec = $GLOBALS['DB']->prepare("INSERT INTO brands_stores (brand_id, store_id) VALUES (:brand_id, :store_id);");

@@ -76,6 +76,19 @@ class StoreTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($test_store_one, $result);
     }
 
+    function test_updateName()
+        {
+            $name = "Oh My Galosh";
+            $test_store = new Store ($name);
+            $test_store->save();
+
+            $new_name = "Shoes R Us";
+            $test_store->updateName($new_name);
+
+            $result = Store::getAll();
+            $this->assertEquals($new_name, $result[0]->getName());
+        }
+
     function test_getBrands()
     {
         $name_one = 'Soles of the Damned';
