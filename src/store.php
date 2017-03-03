@@ -34,6 +34,11 @@ class Store
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getid()};");
+        $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()};");
+    }
 
     function updateName($new_name)
     {
